@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<body>
+<table border=1>
+	<tr>
+		<th>ID</th>
+		<th>Title</th>
+		<th>Author</th>
+		<th>Isbn</th>
+		<th>Genre</th>
+		<th>CreatedAt</th>
+		<th>Update</th>
+		<th>Delete</th>
+	</tr>
+	<tr th:each="book : ${bookList}">
+		<td th:text="${book.id}"></td>
+		<td th:text="${book.title}"></td>
+		<td th:text="${book.author}"></td>
+		<td th:text="${book.isbn}"></td>
+		<td th:text="${book.genre}"></td>
+		<td th:text="${#temporals.format(book.created_at, 'yyyy-MM-dd')}"></td>
+		<td><a th:href="@{/books/edit/{id}(id=${book.id})}">update</a></td>
+		<td><a th:href="@{/books/remove/{id}(id=${book.id})}">delete</a></td>
+	</tr>
+</table>
+<p>
+	<a href="/books/signup">Insert</a>
+</p>
+</body>
+</html>
